@@ -1,2 +1,0 @@
-# HCIBootstrap
-Tugas HCI

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Aplikasi</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			var hargamakanan, ttlMakanan,ttlMinuman,ttlHarga,pajak,ttlBelanja;
+			
+			function hitung(){
+				var makanan = document.getElementById("makanan").value;
+				var jumlah = document.getElementById("jmlmakanan").value;
+				var airmineral = document.getElementById("airmineral").value;
+				var tehbotol = document.getElementById("tehbotol").value;
+				var esjeruk = document.getElementById("esjeruk").value;
+				
+				if(makanan=="mieayam"){
+					hargamakanan = 12000;
+				}else if(makanan=="bakso"){
+					hargamakanan = 12500;
+				}else if(makanan="miepangsit"){
+					hargamakanan = 15000;
+				}else{
+					hargamakanan = 0;
+				}
+
+				ttlMakanan=hargamakanan*jumlah;
+
+				ttlMinuman= (airmineral*6000)+(tehbotol*8000)+(esjeruk*7000);
+
+				ttlHarga = ttlMakanan+ttlMinuman
+
+				if(ttlHarga>0){
+					pajak = ttlHarga*0.1;
+				}else{
+					0
+				}
+
+				ttlBelanja = ttlHarga+pajak;
+
+				document.getElementById("total").value=ttlHarga;
+				document.getElementById("pajak").value=pajak;
+				document.getElementById("totalharga").value=ttlBelanja;
+			}
+
+
+			function kembalian(){
+				var uang = document.getElementById("bayar").value;
+				var kembalian = uang - ttlBelanja;
+				document.getElementById("infokembalian").value = "Uang Kembalian: Rp "+kembalian;
+			}
+
+		</script>
+
+		<div align="center">
+			<h1>Aplikasi KASIR</h3>
+			
+			<form name="frmkasir" id="frmkasir" >
+				<table border="1">
+					<tr>
+						<td>Makanan</td>
+						<td>:</td>
+						<td>
+							<select id="makanan" onchange="hitung();">
+								<option value=""></option>
+								<option value="mieayam">Mie Ayam</option>
+								<option value="bakso">Bakso</option>
+								<option value="miepangsit">Mie Pangsit Bakso</option>
+							</select>
+							Jumlah <input type="number" id="jmlmakanan" name="jmlmakanan" width="15px" value='0' onchange="hitung();">
+
+						</td>
+					</tr>
+
+					<tr>
+						<td>Minuman</td>
+						<td>:</td>
+						<td>
+							<input type="number" id="airmineral" width="15px" value='0' onchange="hitung();"> Air Mineral<br>
+							<input type="number" id="tehbotol" width="15px" value='0' onchange="hitung();"> Teh Botol<br>
+							<input type="number" id="esjeruk" width="15px" value='0' onchange="hitung();"> Es Jeruk
+						</td>
+					</tr>
+
+					<tr>
+						<td>Total</td>
+						<td>:</td>
+						<td>
+							<input type="number" id="total" readonly value='0'>
+						</td>
+					</tr>
+
+					<tr>
+						<td>Pajak 10%</td>
+						<td>:</td>
+						<td>
+							<input type="number" id="pajak" readonly value='0'>
+						</td>
+					</tr>
+
+					<tr>
+						<td>Total Harga</td>
+						<td>:</td>
+						<td>
+							<input type="number" id="totalharga" readonly value='0'>
+						</td>
+					</tr>
+
+					<tr>
+						<td>Bayar</td>
+						<td>:</td>
+						<td>
+							<input type="number" id="bayar" value='0'>
+						</td>
+					</tr>
+
+					<tr>
+						<td colspan="3" align="center">
+							<input type="button" value="Hitung" onclick="kembalian();">
+							<input type="reset" value="Reset">
+						</td>
+					</tr>
+
+				</table>
+				<textarea id="infokembalian" placeholder="Info Kembalian" cols="50" rows="3">
+					
+				</textarea>
+				
+				
+			</form>
+
+		</div>
+		<div style="margin-left: 500px;">
+			Keterangan Harga:
+			<ul>
+				<li>Mie Ayam = Rp 12.000,-</li>
+				<li>Mie Bakso = Rp 12.500,-</li>
+				<li>Mie Pangsit Bakso = Rp 15.000,-</li>
+			</ul>
+
+			<ul>
+				<li>Air Mineral = Rp 6.000,-</li>
+				<li>Teh Botol = Rp 8.000,-</li>
+				<li>Es Jeruk = Rp 7.000,-</li>
+			</ul>
+		</div>
+	</body>
+</html>
